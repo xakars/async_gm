@@ -23,19 +23,10 @@ def draw(canvas):
     curses.curs_set(False)
     canvas.border()
     coroutine = blink(canvas, row, column)
-    coroutine.send(None)
-    canvas.refresh()
-    time.sleep(2)
-    coroutine.send(None)
-    canvas.refresh()
-    time.sleep(2)
-    coroutine.send(None)
-    canvas.refresh()
-    time.sleep(2)
-    coroutine = blink(canvas, row, column)
-    coroutine.send(None)
-    canvas.refresh()
-    time.sleep(2)
+    while True:
+        coroutine.send(None)
+        canvas.refresh()
+        time.sleep(1)
 
 
 if __name__ == '__main__':
