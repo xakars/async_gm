@@ -22,9 +22,10 @@ def draw(canvas):
     row, column = (10, 25)
     curses.curs_set(False)
     canvas.border()
-    coroutine = blink(canvas, row, column)
+    coroutines = [blink(canvas, row, column, ' *'*step) for step in range(6)]
     while True:
-        coroutine.send(None)
+        for coroutine in coroutines.copy():
+            coroutine.send(None)
         canvas.refresh()
         time.sleep(1)
 
